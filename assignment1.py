@@ -1,8 +1,7 @@
 """
-Replace the contents of this module docstring with your own details
-Name:
-Date started:
-GitHub URL:
+Name: Nishant
+Date started: 30/03/2021
+GitHub URL: https://github.com/Nishantranaa/starter_a1_places
 """
 
 
