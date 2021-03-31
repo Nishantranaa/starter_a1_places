@@ -1,7 +1,7 @@
 # CP1404 Assignment 1 - Travel Tracker
 Assignment 1 for CP1404/CP1804, IT@JCU
 
-By: **your name here**  
+By: Nishant_Rana  
 
 This repo contains starter files including a Python file and two CSV files.  
 (`temp.csv` is to copy from in case you delete the contents of `places.csv` and want the original data back).  
