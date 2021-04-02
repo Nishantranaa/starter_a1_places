@@ -35,6 +35,7 @@ def menu():
     counter = 0
     for total_destination in places:
         counter += 1
+        print("{} in {} priority {}".format(total_destination[0], total_destination[1], total_destination[2]))
     print("{} places loaded from places.csv".format(counter))
 # repeated the above read_file method to get the value of the count.
 
