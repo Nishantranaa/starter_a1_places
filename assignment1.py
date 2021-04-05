@@ -5,7 +5,7 @@ Date started: 30/03/31
 GitHub URL: https://github.com/Nishantranaa/starter_a1_places
 """
 from csv import reader
-
+import csv
 
 def main():
     print("Welcome to Travel Tracker version 1.0 - by Nishant_Rana")
@@ -65,18 +65,30 @@ def menu():
 
     elif letter_input == "A":
         if letter_input == "A":
-            name = input("Name:")
-            country = input("Country: ")
-            priority = input("Priority: ")
-            import csv
+            name = str(input("Name:"))
+            country = str(input("Country: "))
+            visited = str("n")
+            try:
+                while priority <= 0:
+                    priority = int(input("Priority: "))
+                    if priority > 0:
+                        break
+                    else:
+                        print("Number must be > 0")
+                    continue
+            except ValueError:
+                print("Invalid input; enter a valid number")
+
+            print("{} in {} (priority {}) added to Travel Tracker".format(name, country, priority))
             with open('places.csv', 'a', newline='') as csv_w_file:
-                writer = csv.writer(csv_w_file)
-                writer.writerow([name, country, priority])
+             writer = csv.writer(csv_w_file)
+             writer.writerow([name, country, priority, visited])
+
         else:
-            print("Input cannot be blank")
+          print("Input cannot be blank")
 
     else:
-        print("Invalid menu choice")
+     print("Invalid menu choice")
 
 
 main()
