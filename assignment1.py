@@ -25,7 +25,6 @@ def main():
 #     return counter
 
 
-
 def menu():
     with open('places.csv', 'r+') as csv_file:
         csv_reader = reader(csv_file)
@@ -35,9 +34,9 @@ def menu():
     counter = 0
     for total_destination in places:
         counter += 1
-        print("{} in {} priority {}".format(total_destination[0], total_destination[1], total_destination[2]))
+
     print("{} places loaded from places.csv".format(counter))
-# repeated the above read_file method to get the value of the count.
+    # repeated the above read_file method to get the value of the count.
 
     print("Menu: \n L - List places \n A - Add new place \n M - Mark a place as visited \n Q - Quit")
     letter_input = str(input(">>> ").upper())
@@ -56,8 +55,14 @@ def menu():
                 else:
                     counter_visited += 1
                     # print(counter_visited) tester
+        counter = 0
+        for total_destination in places:
+            counter += 1
+            print("{} in {} priority {}".format(total_destination[0], total_destination[1], total_destination[2]))
+            print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
 
-        print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
+    else:
+        print("Invalid menu choice")
 
 
 main()
