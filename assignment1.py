@@ -26,8 +26,9 @@ def main():
 
 
 def menu():
-    with open('places.csv', 'r+') as csv_file:
-        csv_reader = reader(csv_file)
+    # with open('places.csv', 'r') as csv_r_file:
+    with open('places.csv', 'r') as csv_r_file:
+        csv_reader = reader(csv_r_file)
         # Passing the cav_reader object to list() to get a list of lists
         places = list(csv_reader)
         # value = places[0][1]
@@ -55,11 +56,24 @@ def menu():
                 else:
                     counter_visited += 1
                     # print(counter_visited) tester
+
         counter = 0
         for total_destination in places:
             counter += 1
             print("{} in {} priority {}".format(total_destination[0], total_destination[1], total_destination[2]))
-            print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
+        print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
+
+    elif letter_input == "A":
+        if letter_input == "A":
+            name = input("Name:")
+            country = input("Country: ")
+            priority = input("Priority: ")
+            import csv
+            with open('places.csv', 'a', newline='') as csv_w_file:
+                writer = csv.writer(csv_w_file)
+                writer.writerow([name, country, priority])
+        else:
+            print("Input cannot be blank")
 
     else:
         print("Invalid menu choice")
