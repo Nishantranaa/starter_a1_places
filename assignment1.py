@@ -7,6 +7,7 @@ GitHub URL: https://github.com/Nishantranaa/starter_a1_places
 from csv import reader
 import csv
 
+
 def main():
     print("Welcome to Travel Tracker version 1.0 - by Nishant_Rana")
     menu()
@@ -38,33 +39,35 @@ def menu():
 
     print("{} places loaded from places.csv".format(counter))
     # repeated the above read_file method to get the value of the count.
+    menu_loop = "loop"
+    while menu_loop == "loop":
+        print("Menu: \n L - List places \n A - Add new place \n M - Mark a place as visited \n Q - Quit")
+        letter_input = str(input(">>> ").upper())
+        # v - visited, n - unvisited
+        if letter_input == "L":
+            # print("test") # used the print statement to test the first sequence.
+            i = 0
+            counter_unvisited = 0
+            counter_visited = 0
+            while i <= counter - 1:
+                for n_or_v in places[i][3]:
+                    i += 1
+                    if n_or_v == 'n':
+                        counter_unvisited += 1
+                        # print(counter_unvisited) tester
+                    else:
+                        counter_visited += 1
+                        # print(counter_visited) tester
 
-    print("Menu: \n L - List places \n A - Add new place \n M - Mark a place as visited \n Q - Quit")
-    letter_input = str(input(">>> ").upper())
-    # v - visited, n - unvisited
-    if letter_input == "L":
-        # print("test") # used the print statement to test the first sequence.
-        i = 0
-        counter_unvisited = 0
-        counter_visited = 0
-        while i <= counter - 1:
-            for n_or_v in places[i][3]:
-                i += 1
-                if n_or_v == 'n':
-                    counter_unvisited += 1
-                    # print(counter_unvisited) tester
-                else:
-                    counter_visited += 1
-                    # print(counter_visited) tester
+            counter = 0
+            for total_destination in places:
+                counter += 1
+                print("{} in {} priority {}".format(total_destination[0], total_destination[1], total_destination[2]))
+            print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
+            continue
 
-        counter = 0
-        for total_destination in places:
-            counter += 1
-            print("{} in {} priority {}".format(total_destination[0], total_destination[1], total_destination[2]))
-        print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
-
-    elif letter_input == "A":
-        if letter_input == "A":
+        elif letter_input == "A":
+         if letter_input == "A":
             name = str(input("Name:"))
             country = str(input("Country: "))
             visited = str("n")
@@ -81,14 +84,18 @@ def menu():
 
             print("{} in {} (priority {}) added to Travel Tracker".format(name, country, priority))
             with open('places.csv', 'a', newline='') as csv_w_file:
-             writer = csv.writer(csv_w_file)
-             writer.writerow([name, country, priority, visited])
+                writer = csv.writer(csv_w_file)
+                writer.writerow([name, country, priority, visited])
 
-        else:
-          print("Input cannot be blank")
+         else:
+            print("Input cannot be blank")
+         continue
+
+        # elif  letter_input == "M":
+
+
 
     else:
      print("Invalid menu choice")
-
 
 main()
