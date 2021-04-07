@@ -60,42 +60,74 @@ def menu():
                         # print(counter_visited) tester
 
             counter = 0
-            for total_destination in places:
+            for index, total_destination in enumerate(places):
                 counter += 1
-                print("{} in {} priority {}".format(total_destination[0], total_destination[1], total_destination[2]))
+                print("{} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
+                                                       total_destination[2]))
             print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
             continue
 
         elif letter_input == "A":
-         if letter_input == "A":
-            name = str(input("Name:"))
-            country = str(input("Country: "))
-            visited = str("n")
-            try:
-                while priority <= 0:
-                    priority = int(input("Priority: "))
-                    if priority > 0:
-                        break
-                    else:
-                        print("Number must be > 0")
-                    continue
-            except ValueError:
-                print("Invalid input; enter a valid number")
+            if letter_input == "A":
+                name = str(input("Name:"))
+                country = str(input("Country: "))
+                visited = str("n")
+                try:
+                    while priority <= 0:
+                        priority = int(input("Priority: "))
+                        if priority > 0:
+                            break
+                        else:
+                            print("Number must be > 0")
+                        continue
+                except ValueError:
+                    print("Invalid input; enter a valid number")
 
-            print("{} in {} (priority {}) added to Travel Tracker".format(name, country, priority))
-            with open('places.csv', 'a', newline='') as csv_w_file:
-                writer = csv.writer(csv_w_file)
-                writer.writerow([name, country, priority, visited])
+                print("{} in {} (priority {}) added to Travel Tracker".format(name, country, priority))
+                with open('places.csv', 'a', newline='') as csv_w_file:
+                    writer = csv.writer(csv_w_file)
+                    writer.writerow([name, country, priority, visited])
 
-         else:
-            print("Input cannot be blank")
-         continue
+            else:
+                print("Input cannot be blank")
+            continue
 
-        # elif  letter_input == "M":
+        elif letter_input == "M":
+            counter = 0
 
+        for index, total_destination in enumerate(places):
+            counter += 1
 
+            counter_unvisited = 0
 
-    else:
-     print("Invalid menu choice")
+            if total_destination[3] == 'n':
+                # print("test1")
+                counter_unvisited += 1
+                print("* {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
+                                                      total_destination[2]))
+
+            # print(counter_unvisited) tester
+            else:
+
+                # counter_visited += 1
+                # print("test")
+                print("  {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
+                                                    total_destination[2]))
+
+        print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
+        place_number = input("Enter the number of a place to mark as visted \n >>> ")
+
+    # try:
+    #
+    #     if place_number == places[0]:
+    #         if places[1][3] == "v":
+    #          print("{} in {} visted")
+    #     else:
+
+# continue
+
+# else:
+#   print("Invalid menu choice")
+
 
 main()
