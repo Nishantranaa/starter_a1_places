@@ -26,6 +26,7 @@ def main():
 #     return counter
 
 
+
 def menu():
     # with open('places.csv', 'r') as csv_r_file:
     with open('places.csv', 'r') as csv_r_file:
@@ -33,6 +34,7 @@ def menu():
         # Passing the cav_reader object to list() to get a list of lists
         places = list(csv_reader)
         # value = places[0][1]
+    places.sort(key=lambda places: places[2]) # sorted the list in an ascending order from smallest to largest number.
     counter = 0
     for total_destination in places:
         counter += 1
@@ -59,8 +61,15 @@ def menu():
                         counter_visited += 1
                         # print(counter_visited) tester
 
+
+
             counter = 0
             for index, total_destination in enumerate(places):
+                # to sort list of list by given index
+                # using sort() + lambda
+                # sort by third index
+
+
                 counter += 1
                 print("{} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
                                                        total_destination[2]))
