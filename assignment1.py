@@ -26,7 +26,6 @@ def main():
 #     return counter
 
 
-
 def menu():
     # with open('places.csv', 'r') as csv_r_file:
     with open('places.csv', 'r') as csv_r_file:
@@ -34,7 +33,7 @@ def menu():
         # Passing the cav_reader object to list() to get a list of lists
         places = list(csv_reader)
         # value = places[0][1]
-    places.sort(key=lambda places: places[2]) # sorted the list in an ascending order from smallest to largest number.
+    places.sort(key=lambda places: places[2])  # sorted the list in an ascending order from smallest to largest number.
     counter = 0
     for total_destination in places:
         counter += 1
@@ -61,18 +60,26 @@ def menu():
                         counter_visited += 1
                         # print(counter_visited) tester
 
-
-
             counter = 0
+            counter_unvisited = 0
             for index, total_destination in enumerate(places):
                 # to sort list of list by given index
                 # using sort() + lambda
                 # sort by third index
 
-
                 counter += 1
-                print("{} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
-                                                       total_destination[2]))
+                if total_destination[3] == 'n':
+                    # print("test1")
+                    counter_unvisited += 1
+                    print("* {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
+                                                             total_destination[2]))
+
+                else:
+
+                    # counter_visited += 1
+                    # print("test")
+                    print("  {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
+                                                             total_destination[2]))
             print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
             continue
 
@@ -103,40 +110,50 @@ def menu():
 
         elif letter_input == "M":
             counter = 0
-
-        for index, total_destination in enumerate(places):
-            counter += 1
-
             counter_unvisited = 0
 
-            if total_destination[3] == 'n':
-                # print("test1")
-                counter_unvisited += 1
-                print("* {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
-                                                      total_destination[2]))
+            for index, total_destination in enumerate(places):
+                counter += 1
 
-            # print(counter_unvisited) tester
+                if total_destination[3] == 'n':
+                    # print("test1")
+                    counter_unvisited += 1
+                    print("* {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
+                                                             total_destination[2]))
+
+                else:
+
+                    # counter_visited += 1
+                    # print("test")
+                    print("  {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
+                                                             total_destination[2]))
+
+            print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
+
+            try:
+                print("Places prefixed with an '*' have not yet been visited.")
+                place_number = int(
+                    input("Enter the number of a place with an asterisk to be marked as visited. \n >>> "))
+                place_number -= 1
+            except ValueError:
+                print("Number must be > 0")
+
+            #
+            tem_file = []
+            if places[place_number][3] == 'n':
+                tem_file=[places[place_number]]
+                places[place_number][3] = 'v'
+
+                # places[place_number][3] = "v" # list is a mutable
+                print("{} in {} visited!".format(tem_file[0][0], tem_file[0][1]))
+        # CAN TRY CATCH THE IndexError: if index is out of range.
             else:
+             print("That place is already visited")
 
-                # counter_visited += 1
-                # print("test")
-                print("  {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
-                                                    total_destination[2]))
+            continue
 
-        print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
-        place_number = input("Enter the number of a place to mark as visted \n >>> ")
-
-    # try:
-    #
-    #     if place_number == places[0]:
-    #         if places[1][3] == "v":
-    #          print("{} in {} visted")
-    #     else:
-
-# continue
-
-# else:
-#   print("Invalid menu choice")
+    else:
+        print("Invalid menu choice")
 
 
 main()
