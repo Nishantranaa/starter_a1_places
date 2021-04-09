@@ -35,7 +35,7 @@ def menu():
         csv_reader = reader(csv_r_file)
         # Passing the csv_reader object to list() to get a list of lists
         places = list(csv_reader)
-        places.sort(key=lambda places: places[2])  # sorted the list in an ascending order from smallest to largest number.
+        places.sort(key=lambda places:places[ 2])  # sorted the list in an ascending order from smallest to largest number.
         counter = 0                                # the sort fuction result would be affected if the row numeric digit does not have a space
                                                    # prefixed.
     for total_destination in places:
@@ -51,24 +51,12 @@ def menu():
         if letter_input == "L":
             # print("test") # used the print statement to test the first sequence.
             i = 0
-            counter_unvisited = 0
-            counter_visited = 0
-            #while i <= counter - 1:
-            for n_or_v in places[i][3]:
-                    i += 1
-                    if n_or_v == 'n':
-                        counter_unvisited += 1
-                        # print(counter_unvisited) tester
-                    else:
-                        counter_visited += 1
-                        # print(counter_visited) tester
-
             counter = 0
             counter_unvisited = 0
+            counter_visited = 0
+
             for index, total_destination in enumerate(places):
-                # to sort list of list by given index
-                # using sort() + lambda
-                # sort by third index
+
 
                 counter += 1
                 if total_destination[3] == 'n':
@@ -83,8 +71,14 @@ def menu():
                     # print("test")
                     print("  {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
                                                              total_destination[2]))
-            print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
-            continue
+
+            if counter_unvisited == 0:
+                print("{} places. No places left to visit. Why not add a new place?".format(counter, counter_visited))
+                # print(total_destinations) # prints entire file as one list
+            else:
+
+              print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
+              continue
 
         elif letter_input == "A":
             if letter_input == "A":
@@ -96,6 +90,7 @@ def menu():
                     priority = int(input("Priority: "))
                 except ValueError:
                     print("Invalid input; enter a valid number")
+                    continue
                 while priority <= 0:
                     if priority > 0:
                         break
@@ -114,6 +109,7 @@ def menu():
 
         elif letter_input == "M":
             counter = 0
+            counter_visited = 0
             counter_unvisited = 0
             total_destinations = []
 
@@ -127,24 +123,41 @@ def menu():
                                                              total_destination[2]))
                 else:
 
-                  # counter_visited += 1
+                  counter_visited += 1
                   # print("test")
                   print("  {} {} in {} priority {}".format(index + 1, total_destination[0], total_destination[1],
                                                          total_destination[2]))
 
-            print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
-            # print(total_destinations) # prints entire file as one list
+            if counter_unvisited == 0:
+                print("No unvisited places")
+                continue
 
+            else:
+                print("{} places. You still want to visit {} places.".format(counter, counter_unvisited))
+                # print(total_destinations) # prints entire file as one list
+
+
+
+
+            place_number = 0
 
             try:
                 print("Places prefixed with an '*' have not yet been visited.")
                 place_number = int(
                     input("Enter the number of a place with an asterisk to be marked as visited. \n >>> "))
-                place_number -= 1
-            except ValueError:
-                print("Number must be > 0")
 
+            except ValueError:
+                print("Invalid input; enter a valid number")
+                continue
+            except UnboundLocalError:
+                print("Invalid place number")
+                continue
+
+            place_number -= 1
             tem_file = []
+            while not place_number >= 0:
+                print("Number must be > 0")
+                continue
 
             if places[place_number][3] == 'n':
                 places[place_number][3] = 'v' # modified the file
@@ -171,17 +184,24 @@ def menu():
                     a.writerow(tem_file)
 
 
-
-
-
-
             else:
                 print("That place is already visited")
             continue
              # overwrite old file
+            counter = 0
+        elif letter_input == "Q":
+
+           for total_destination in places:
+                counter +1
+
+           menu_loop = "stop_loop"
+
 
         else:
             print("Invalid menu choice")
+
+    print("{} places saved to places.csv".format(counter))
+    print("Have a nice day :)")
 
 
 
