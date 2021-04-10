@@ -10,9 +10,6 @@ The list will include: name of the place, the country it is located in, its prio
 the highest priority and indicates whether that place has been visited (v) or unvisited (n).
 
 A user can add a new place they have visited and mark places as visited, but they cannot change places from visited unvisited. The program will identify which countries are marked as visited and which aren't. This helpfully allows the user to select which country that they have already visited. The majority of input fields are coded in a manner to handle the general occurring exceptions. The user can quit the program which will summarise the total number of countries in his travel list. 
- 
-Note: If you use the free WakaTime service on your own machine, you can track exactly how long you spent in code (over one week).  
-See https://trello.com/c/6H24THnj/21-wakatime-time-tracking-for-ides-join-our-leaderboard
 
 This repo contains starter files including a Python file and two CSV files.  
 (`temp.csv` is to copy from in case you delete the contents of `places.csv` and want the original data back).  
