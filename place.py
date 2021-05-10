@@ -15,3 +15,5 @@ class Place:
         self.priority = priority
         self.visited_status = visited_status
 
+    def __str__(self):
+        return "{},  country={}, priority={}, visited={}".format(self.name, self.country, self.priority, self.visited_status)
