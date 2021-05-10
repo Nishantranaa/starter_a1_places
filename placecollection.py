@@ -34,3 +34,6 @@ class PlaceCollection:
         for i in self.places:
             place_list.append([i.name, i.country, str(i.priority), i.visited_status])
         return place_list
+
+    def add_place(self, place):
+        self.places.append(place)
