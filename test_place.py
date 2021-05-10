@@ -38,5 +38,20 @@ def run_tests():
     assert not new_place.is_visited
     print("Success!")
 
+    # Testing Methods
+    print("\nTest class methods")
+
+    print("\nTesting is_visited()")
+    place1 = Place("Zimbabwe", "Harare", 8, False)
+    print(place1)
+    print(place1.is_visited)
+    assert not place1.is_visited
+    # Calling mark_visited method
+    place1.mark_visited()
+    print(place1.is_visited)
+    assert place1.is_visited
+
+
+
 
 run_tests()
