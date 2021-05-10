@@ -60,5 +60,18 @@ def run_tests():
     print(place2.is_visited)
     assert not place2.is_visited
 
+    print("\nTesting is_important()")
+    place3 = Place("Kenya", "Nairobi", 5, True)
+    print(place3)
+    assert not place3.is_important()
+    place4 = Place("Kenya", "Nairobi", 1, True)
+    print(place4)
+    assert place4.is_important()
+
+    place5 = Place("Penang", "Malaysia", 3, False)
+    print(place5)
+    place5.mark_visited()
+    assert not place5.is_important()
+
 
 run_tests()
