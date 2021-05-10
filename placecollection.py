@@ -10,4 +10,9 @@ from operator import attrgetter
 
 class PlaceCollection:
     """..."""
-    pass
+    """This class will contain a single attribute: list of place objects, and following methods."""
+
+    def __init__(self):
+        self.places = []  # loading csv content into this place_objects list.
+
+
