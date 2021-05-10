@@ -16,4 +16,11 @@ class Place:
         self.visited_status = visited_status
 
     def __str__(self):
-        return "{},  country={}, priority={}, visited={}".format(self.name, self.country, self.priority, self.visited_status)
+        return "{},  country={}, priority={}, visited={}".format(self.name, self.country, self.priority,
+                                                                 self.visited_status)
+
+    def mark_visited(self):
+        """ Marks the place as visited """
+        self.visited_status = 'v'
+        return
+        pass
