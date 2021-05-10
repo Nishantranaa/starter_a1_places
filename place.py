@@ -1,12 +1,17 @@
 # File place.py
 
-"""..."""
+"""This place class will contain methods which can be be used to create reusable data types."""
 
 
 # Create your Place class in this file
 
 
 class Place:
-    """..."""
+    """Represents a place object"""
 
-    pass
+    def __init__(self, name="", country="", priority=0, visited_status=''):
+        self.name = name
+        self.country = country
+        self.priority = priority
+        self.visited_status = visited_status
+
