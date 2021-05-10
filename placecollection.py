@@ -37,3 +37,10 @@ class PlaceCollection:
 
     def add_place(self, place):
         self.places.append(place)
+
+    def get_number_of_unvisited_places(self):
+        count = 0
+        for i in self.places:
+            if i.visited_status == 'n':
+                count += 1
+        return count
