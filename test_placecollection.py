@@ -14,6 +14,7 @@ def run_tests():
     print(place_collection)
     assert not place_collection.places  # an empty list is considered False
 
+
     # Test loading places
     print("Test loading places:")
     place_collection.load_places('places.csv')
@@ -22,18 +23,25 @@ def run_tests():
 
     # Test adding a new Place with values
     print("Test adding new place:")
-    place_collection.add_place(Place("Smithfield", "Australia", 5, False))
+    place_collection.add_place(Place("Brisbane", "Australia", 2, False))
     print(place_collection)
 
     # Test sorting places
+    ## Sorting by priority
     print("Test sorting - priority:")
     place_collection.sort("priority")
     print(place_collection)
-    # TODO: Add more sorting tests
 
-    # TODO: Test saving places (check CSV file manually to see results)
+    ## Sorting by country
+    print("Test sorting - country:")
+    place_collection.sort("country")
+    print(place_collection)
 
-    # TODO: Add more tests, as appropriate, for each method
+    ## Sorting by name
+    print("Test sorting - name:")
+    place_collection.sort("name")
+    print(place_collection)
+
 
 
 run_tests()
