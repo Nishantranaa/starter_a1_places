@@ -46,6 +46,8 @@ def run_tests():
     # Test saving places (check CSV file manually to see results)
     place_collection.save_places()
 
-
+    # More tests, as appropriate, for each method
+    num = place_collection.get_number_of_unvisited_places()
+    print('Number of unvisited places: ', num)
 
 run_tests()
