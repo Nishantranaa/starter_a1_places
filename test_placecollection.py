@@ -43,5 +43,9 @@ def run_tests():
     print(place_collection)
 
 
+    # Test saving places (check CSV file manually to see results)
+    place_collection.save_places()
+
+
 
 run_tests()
