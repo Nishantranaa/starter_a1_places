@@ -32,8 +32,8 @@ def run_tests():
 
     new_place = Place("Durban", "South Africa", 5, False)
     print(new_place)
-    assert new_place.name == "South Africa"
-    assert new_place.country == "Durban"
+    assert new_place.name == "Durban"
+    assert new_place.country == "South Africa"
     assert new_place.priority == 5
     assert not new_place.is_visited
     print("Success!")
@@ -51,7 +51,14 @@ def run_tests():
     print(place1.is_visited)
     assert place1.is_visited
 
-
+    place2 = Place("Zimbabwe", "Harare", 8, True)
+    print(place2)
+    print(place2.is_visited)
+    assert place2.is_visited
+    # Calling unmark_visited method
+    place2.mark_unvisited()
+    print(place2.is_visited)
+    assert not place2.is_visited
 
 
 run_tests()
