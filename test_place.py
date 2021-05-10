@@ -30,5 +30,13 @@ def run_tests():
     assert new_place.is_visited
     print("Success!")
 
+    new_place = Place("Durban", "South Africa", 5, False)
+    print(new_place)
+    assert new_place.name == "South Africa"
+    assert new_place.country == "Durban"
+    assert new_place.priority == 5
+    assert not new_place.is_visited
+    print("Success!")
+
 
 run_tests()
