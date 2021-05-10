@@ -23,4 +23,8 @@ class Place:
         """ Marks the place as visited """
         self.visited_status = 'v'
         return
-        pass
+
+    def mark_unvisited(self):
+        """ Marking the place with and * that shows visited but it has not yet been as visited """
+        self.visited_status = 'n'
+        return
