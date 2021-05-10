@@ -28,3 +28,12 @@ class Place:
         """ Marking the place with and * that shows visited but it has not yet been as visited """
         self.visited_status = 'n'
         return
+
+    def is_important(self):
+        """This method will check if a place is important and return a boolean."""
+        if self.priority <= 2:
+            print('Place is important')
+            return True
+        else:
+            print('Place is not important')
+            return False
