@@ -22,3 +22,9 @@ class PlaceCollection:
             places_list = list(csv_reader)
         for p in places_list:
             self.places.append(Place(name=p[0], country=p[1], priority=int(p[2]), visited_status=p[3]))
+
+    def save_places(self):
+        places_list = self.to_place_list()
+        with open('places.csv', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile)
+            writer.writerows(places_list)
