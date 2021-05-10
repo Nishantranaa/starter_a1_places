@@ -28,3 +28,9 @@ class PlaceCollection:
         with open('places.csv', 'w', newline='') as writeFile:
             writer = csv.writer(writeFile)
             writer.writerows(places_list)
+
+    def to_place_list(self):
+        place_list = []
+        for i in self.places:
+            place_list.append([i.name, i.country, str(i.priority), i.visited_status])
+        return place_list
