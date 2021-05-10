@@ -44,3 +44,8 @@ class PlaceCollection:
             if i.visited_status == 'n':
                 count += 1
         return count
+
+    def sort(self, key):
+        """"Sort places list by key passed in then by priority"""
+        self.places = sorted(self.places, key=attrgetter(key, 'priority'))
+        return
