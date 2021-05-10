@@ -22,5 +22,13 @@ def run_tests():
     # Test initial-value place
     print("\nTest initial-value place:")
 
+    new_place = Place("Malagar", "Spain", 1, True)
+    print(new_place)
+    assert new_place.name == "Malagar"
+    assert new_place.country == "Spain"
+    assert new_place.priority == 1
+    assert new_place.is_visited
+    print("Success!")
+
 
 run_tests()
