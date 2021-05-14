@@ -12,31 +12,45 @@ GitHub URL: https://github.com/Nishantranaa/starter_a1_places
 # kivy.app denotes a python package. A package is a collection of related modules.
 # Both App and Widget are modules within the app package.
 
+
 from kivy.app import App
-from kivy.app import Builder
+from kivy.lang import Builder
+from kivy.uix.button import Button
+from kivy.properties import StringProperty
+from kivy.properties import ListProperty
+from placecollection import PlaceCollection
+from place import Place
+# from operator import itemgetter # used to sort items from a list
+
+VISITS = {'Visited': 1, 'Unvisited': 2}
 
 
 class TravelTrackerApp(App):
-    """The TravelTrackerApp class overrides App.build() to return an empty Widget instance
-self.root comes from the App class, it refers to the main widget of our
-Kivy program. All other widgets get added to this main root widget"""
+    """
+    Main program
+    """
+    status_text = StringProperty()  # Initializes status_text
+    visited_status_text = StringProperty()
+    place_codes = ListProperty()
+
+    def __init__(self, **kwargs):
+        """
+        Construct main app
+        """
+        super(TravelTrackerApp, self).__init__(**kwargs)
+        self.pc = PlaceCollection()
+        self.pc.load_places()
+        self.visited_status_text = "Places to visit: {}".format(self.pc.get_number_of_unvisited_places())
+        self.input_data = []
 
     def build(self):
-        self.title = "Hello world!"  # The title of the main window is set using self.title
-        self.root = Builder.load_file('app.kv')  # Builder.load_file() is used to read Kv code from a Kv file
-        # load_file() returns the GUI layout declared in the Kv file
+        """
+        Build the Kivy GUI
+        :return: reference to the root Kivy widget
+        """
+        self.title = "Travel Tracker"
+        self.root = Builder.load_file('app.kv')
+        self.create_entry_buttons()
+        self.place_codes = sorted(VISITS.keys())
         return self.root
 
-
-""""Every class/method has a variable called self, which refers to the current object 
-(also known as an instance).When you want to create or access a variable that your Kivy 
-app should know about in multiple functions, use self.variable
-"""
-
-if __name__ == '__main__':
-    TravelTrackerApp().run()
-
-    """"We call App.run() on this (anonymous) instance
-    That’s how Kivy knows to make the GUI program visible
-    Kivy uses the widget returned by build()
-    """
