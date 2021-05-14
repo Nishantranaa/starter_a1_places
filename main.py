@@ -54,3 +54,29 @@ class TravelTrackerApp(App):
         self.place_codes = sorted(VISITS.keys())
         return self.root
 
+    def on_stop(self):
+        print('stopped')
+        self.pc.save_places()
+
+    def sort_by(self):
+        """ handle change of spinner selection, output result to label widget """
+        self.pc.sort("visited_status")
+
+    def create_entry_buttons(self):
+        """
+        Create the entry buttons and add them to the GUI
+        :return: None
+        """
+        for p in self.pc.places:
+            # create a button for each place entry
+            temp_str = p.__str__() + " (visited)" if p.visited_status else p.__str__()
+            temp_button = Button(text=temp_str)
+            temp_button.bind(on_release=self.press_entry)
+            temp_button.place = p
+            temp_button.state = "down" if p.visited_status else "normal"
+            # add the button to the "entries_box" using add_widget()
+            self.root.ids.entries_box.add_widget(temp_button)
+
+
+
+TravelTrackerApp().run()
