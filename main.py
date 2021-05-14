@@ -77,6 +77,32 @@ class TravelTrackerApp(App):
             # add the button to the "entries_box" using add_widget()
             self.root.ids.entries_box.add_widget(temp_button)
 
+    def press_entry(self, instance):
+        """
+        Handler for pressing entry buttons
+        :param instance: the Kivy button instance
+        :return: None
+        """
+        place = instance.place
+        place.visited_status = not place.visited_status
+        instance.text = place.__str__() + " (visited)" if place.visited_status else place.__str__()
+
+        if place.is_important():
+            if place.visited_status:
+                self.status_text = "You visited {}. Great travelling!".format(place.name)
+                instance.state = "down"
+            else:
+                self.status_text = "You need to visit {}. Get going!".format(place.name)
+                instance.state = "normal"
+        else:
+            if place.visited_status:
+                self.status_text = "You visited {}.".format(place.name)
+                instance.state = "down"
+            else:
+                self.status_text = "You need to visit {}.".format(place.name)
+                instance.state = "normal"
+
+        self.visited_status_text = "Places to visit: {}".format(self.pc.get_number_of_unvisited_places())
 
 
 TravelTrackerApp().run()
